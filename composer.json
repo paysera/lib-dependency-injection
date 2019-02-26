@@ -1,6 +1,9 @@
 {
     "name": "paysera/lib-dependency-injection",
-    "description": "Adds helper classes to Symfony DependencyInjection component",
+    "description": "Helper classes for Symfony Dependency Injection component",
+    "keywords": ["compiler", "pass", "compilerpass", "DI", "DIC", "tag", "tags", "dependencyinjection", "priority", "services"],
+    "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Paysera\\Component\\DependencyInjection\\": "src/"
@@ -12,11 +15,22 @@
         }
     },
     "require": {
-        "php": ">=5.3.3",
-        "symfony/dependency-injection": "2.*|3.*",
-        "symfony/config": "2.*|3.*"
+        "php": ">=7.0",
+        "symfony/dependency-injection": "^2.3|^3.0|^4.0",
+        "symfony/config": "^2.3|^3.0|^4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.7"
+        "phpunit/phpunit": "^8.0",
+        "paysera/lib-php-cs-fixer-config": "^2.0.0",
+        "friendsofphp/php-cs-fixer": "2.11.1"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "scripts": {
+        "phpunit": "phpunit",
+        "fix-cs": "php-cs-fixer fix",
+        "test-cs": "php-cs-fixer fix --dry-run -v",
+        "test": ["@phpunit"]
     }
 }

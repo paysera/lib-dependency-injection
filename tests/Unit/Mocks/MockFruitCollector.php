@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection\Tests\Unit\Mocks;
 
@@ -7,21 +8,21 @@ class MockFruitCollector
     const DEFAULT_COLOR = 'yellow';
 
     /**
-     * @var MockFruitInterface[]
+     * @var mixed[]
      */
-    protected $fruit = array();
+    protected $fruit = [];
 
     /**
      * @var array
      */
-    protected $colors = array();
+    protected $colors = [];
 
     /**
-     * @param MockFruitInterface $fruit
+     * @param mixed $fruit
      * @param string $key
      * @param string $color optional argument to test optional tag attributes
      */
-    public function addFruit(MockFruitInterface $fruit, $key, $color = self::DEFAULT_COLOR)
+    public function addFruit($fruit, $key, $color = self::DEFAULT_COLOR)
     {
         $this->fruit[$key] = $fruit;
         $this->colors[$key] = $color;
@@ -29,7 +30,7 @@ class MockFruitCollector
 
     /**
      * @param string $key
-     * @return MockFruitInterface|null
+     * @return mixed|null
      */
     public function getFruit($key)
     {
