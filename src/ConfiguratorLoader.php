@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
 
+use InvalidArgumentException;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -14,34 +16,7 @@ class ConfiguratorLoader extends Loader
         $this->container = $container;
     }
 
-    /**
-     * @param ConfiguratorInterface $resource
-     * @param string $type
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function load($resource, $type = null)
-    {
-        if (!$resource instanceof ConfiguratorInterface) {
-            throw new \InvalidArgumentException('Resource must be configurator');
-        }
-
-        $this->container->addObjectResource($resource);
-        $resource->load($this->container);
-    }
-
-    /**
-     * @param mixed $resource
-     * @param string $type
-     *
-     * @return bool
-     */
-    public function supports($resource, $type = null)
-    {
-        return is_object($resource) && $resource instanceof ConfiguratorInterface;
-    }
-
-    public static function createContainer(ConfiguratorInterface $configurator, $parameters = array())
+    public static function createContainer(ConfiguratorInterface $configurator, $parameters = [])
     {
         $container = new ContainerBuilder();
 
@@ -59,5 +34,32 @@ class ConfiguratorLoader extends Loader
 
         $container->compile();
         return $container;
+    }
+
+    /**
+     * @param ConfiguratorInterface $resource
+     * @param string $type
+     *
+     * @throws InvalidArgumentException
+     */
+    public function load($resource, $type = null)
+    {
+        if (!$resource instanceof ConfiguratorInterface) {
+            throw new InvalidArgumentException('Resource must be configurator');
+        }
+
+        $this->container->addObjectResource($resource);
+        $resource->load($this->container);
+    }
+
+    /**
+     * @param mixed $resource
+     * @param string $type
+     *
+     * @return bool
+     */
+    public function supports($resource, $type = null)
+    {
+        return is_object($resource) && $resource instanceof ConfiguratorInterface;
     }
 }

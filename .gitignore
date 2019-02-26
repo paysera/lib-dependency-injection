@@ -1,4 +1,5 @@
 vendor/
-build/
+bin/
 phpunit.xml
 composer.lock
+.phpunit.result.cache

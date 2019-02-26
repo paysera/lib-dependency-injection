@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
 
@@ -7,12 +8,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProviderInterface
 {
-    private $configurators = array();
+    private $configurators = [];
 
     /**
      * @param ConfiguratorInterface[] $configurators
      */
-    public function __construct(array $configurators = array())
+    public function __construct(array $configurators = [])
     {
         foreach ($configurators as $configurator) {
             $this->registerConfigurator($configurator);
@@ -37,7 +38,7 @@ class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProvid
      */
     public function getCompilerPasses()
     {
-        $passes = array();
+        $passes = [];
         foreach ($this->configurators as $configurator) {
             if ($configurator instanceof CompilerPassProviderInterface) {
                 $passes = array_merge($passes, $configurator->getCompilerPasses());

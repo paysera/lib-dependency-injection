@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
 
@@ -17,4 +18,4 @@ class DefinitionsConfigurator implements ConfiguratorInterface
     {
         $container->addDefinitions($this->definitions);
     }
-} 
+}
