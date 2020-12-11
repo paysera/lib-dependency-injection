@@ -14,7 +14,7 @@ class DefinitionsConfigurator implements ConfiguratorInterface
         $this->definitions = $definitions;
     }
 
-    public function load(ContainerBuilder $container)
+    public function load(ContainerBuilder $container): void
     {
         $container->addDefinitions($this->definitions);
     }

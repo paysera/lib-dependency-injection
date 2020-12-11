@@ -16,7 +16,7 @@ class ConfiguratorLoader extends Loader
         $this->container = $container;
     }
 
-    public static function createContainer(ConfiguratorInterface $configurator, $parameters = [])
+    public static function createContainer(ConfiguratorInterface $configurator, $parameters = []): ContainerBuilder
     {
         $container = new ContainerBuilder();
 
@@ -33,16 +33,17 @@ class ConfiguratorLoader extends Loader
         $container->getParameterBag()->add($parameters);
 
         $container->compile();
+
         return $container;
     }
 
     /**
      * @param ConfiguratorInterface $resource
-     * @param string $type
+     * @param string|null $type
      *
      * @throws InvalidArgumentException
      */
-    public function load($resource, $type = null)
+    public function load($resource, string $type = null): void
     {
         if (!$resource instanceof ConfiguratorInterface) {
             throw new InvalidArgumentException('Resource must be configurator');
@@ -54,11 +55,11 @@ class ConfiguratorLoader extends Loader
 
     /**
      * @param mixed $resource
-     * @param string $type
+     * @param string|null $type
      *
      * @return bool
      */
-    public function supports($resource, $type = null)
+    public function supports($resource, string $type = null): bool
     {
         return is_object($resource) && $resource instanceof ConfiguratorInterface;
     }

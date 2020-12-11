@@ -20,12 +20,12 @@ class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProvid
         }
     }
 
-    public function registerConfigurator(ConfiguratorInterface $configurator)
+    public function registerConfigurator(ConfiguratorInterface $configurator): void
     {
         $this->configurators[] = $configurator;
     }
 
-    public function load(ContainerBuilder $container)
+    public function load(ContainerBuilder $container): void
     {
         $loader = new ConfiguratorLoader($container);
         foreach ($this->configurators as $configurator) {
@@ -36,7 +36,7 @@ class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProvid
     /**
      * @return CompilerPassInterface[]
      */
-    public function getCompilerPasses()
+    public function getCompilerPasses(): array
     {
         $passes = [];
         foreach ($this->configurators as $configurator) {

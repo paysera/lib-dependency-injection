@@ -7,5 +7,5 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 interface ConfiguratorInterface
 {
-    public function load(ContainerBuilder $container);
+    public function load(ContainerBuilder $container): void;
 }

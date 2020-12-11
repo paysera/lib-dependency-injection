@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
@@ -13,17 +14,17 @@ class AddTaggedCompilerPass implements CompilerPassInterface
     /**
      * Calls method passing tagged service
      */
-    const CALL_MODE_SERVICE = 'service';
+    public const CALL_MODE_SERVICE = 'service';
 
     /**
      * Calls method passing tagged service, but also marks tagged services as lazy
      */
-    const CALL_MODE_LAZY_SERVICE = 'lazy_service';
+    public const CALL_MODE_LAZY_SERVICE = 'lazy_service';
 
     /**
      * Calls method passing only tagged service ID. Makes tagged services public
      */
-    const CALL_MODE_ID = 'id';
+    public const CALL_MODE_ID = 'id';
 
     private $collectorServiceId;
     private $tagName;
@@ -71,7 +72,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         return $this;
     }
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition($this->collectorServiceId)) {
             throw new InvalidConfigurationException('No such service: ' . $this->collectorServiceId);
@@ -88,11 +89,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         }
     }
 
-    /**
-     * @param array $tagsByServiceId
-     * @return array
-     */
-    private function collectTags(array $tagsByServiceId)
+    private function collectTags(array $tagsByServiceId): array
     {
         $tags = [];
         foreach ($tagsByServiceId as $serviceId => $tagsInsideService) {
@@ -107,7 +104,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         return $this->prioritizeTags($tags);
     }
 
-    private function prioritizeTags(array $tags)
+    private function prioritizeTags(array $tags): array
     {
         if ($this->priorityAttribute === null) {
             return $tags;
