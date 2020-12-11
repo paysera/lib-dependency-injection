@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
@@ -7,6 +8,9 @@ use InvalidArgumentException;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * @internal
+ */
 class ConfiguratorLoader extends Loader
 {
     private $container;
