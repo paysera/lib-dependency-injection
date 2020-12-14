@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
@@ -7,6 +8,9 @@ use InvalidArgumentException;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * @internal
+ */
 class ConfiguratorLoader extends Loader
 {
     private $container;
@@ -16,7 +20,7 @@ class ConfiguratorLoader extends Loader
         $this->container = $container;
     }
 
-    public static function createContainer(ConfiguratorInterface $configurator, $parameters = [])
+    public static function createContainer(ConfiguratorInterface $configurator, $parameters = []): ContainerBuilder
     {
         $container = new ContainerBuilder();
 
@@ -33,12 +37,13 @@ class ConfiguratorLoader extends Loader
         $container->getParameterBag()->add($parameters);
 
         $container->compile();
+
         return $container;
     }
 
     /**
      * @param ConfiguratorInterface $resource
-     * @param string $type
+     * @param string|null $type
      *
      * @throws InvalidArgumentException
      */
@@ -54,11 +59,11 @@ class ConfiguratorLoader extends Loader
 
     /**
      * @param mixed $resource
-     * @param string $type
+     * @param string|null $type
      *
      * @return bool
      */
-    public function supports($resource, $type = null)
+    public function supports($resource, $type = null): bool
     {
         return is_object($resource) && $resource instanceof ConfiguratorInterface;
     }

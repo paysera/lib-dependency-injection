@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
@@ -88,11 +89,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         }
     }
 
-    /**
-     * @param array $tagsByServiceId
-     * @return array
-     */
-    private function collectTags(array $tagsByServiceId)
+    private function collectTags(array $tagsByServiceId): array
     {
         $tags = [];
         foreach ($tagsByServiceId as $serviceId => $tagsInsideService) {
@@ -107,7 +104,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         return $this->prioritizeTags($tags);
     }
 
-    private function prioritizeTags(array $tags)
+    private function prioritizeTags(array $tags): array
     {
         if ($this->priorityAttribute === null) {
             return $tags;

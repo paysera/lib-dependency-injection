@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection;
@@ -6,9 +7,12 @@ namespace Paysera\Component\DependencyInjection;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * @internal
+ */
 class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProviderInterface
 {
-    private $configurators = [];
+    private $configurators;
 
     /**
      * @param ConfiguratorInterface[] $configurators
@@ -36,7 +40,7 @@ class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProvid
     /**
      * @return CompilerPassInterface[]
      */
-    public function getCompilerPasses()
+    public function getCompilerPasses(): array
     {
         $passes = [];
         foreach ($this->configurators as $configurator) {
