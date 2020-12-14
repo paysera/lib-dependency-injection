@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProviderInterface
 {
-    private $configurators = [];
+    private $configurators;
 
     /**
      * @param ConfiguratorInterface[] $configurators
