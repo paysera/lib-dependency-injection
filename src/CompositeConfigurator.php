@@ -24,12 +24,12 @@ class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProvid
         }
     }
 
-    public function registerConfigurator(ConfiguratorInterface $configurator): void
+    public function registerConfigurator(ConfiguratorInterface $configurator)
     {
         $this->configurators[] = $configurator;
     }
 
-    public function load(ContainerBuilder $container): void
+    public function load(ContainerBuilder $container)
     {
         $loader = new ConfiguratorLoader($container);
         foreach ($this->configurators as $configurator) {

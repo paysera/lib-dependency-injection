@@ -14,17 +14,17 @@ class AddTaggedCompilerPass implements CompilerPassInterface
     /**
      * Calls method passing tagged service
      */
-    public const CALL_MODE_SERVICE = 'service';
+    const CALL_MODE_SERVICE = 'service';
 
     /**
      * Calls method passing tagged service, but also marks tagged services as lazy
      */
-    public const CALL_MODE_LAZY_SERVICE = 'lazy_service';
+    const CALL_MODE_LAZY_SERVICE = 'lazy_service';
 
     /**
      * Calls method passing only tagged service ID. Makes tagged services public
      */
-    public const CALL_MODE_ID = 'id';
+    const CALL_MODE_ID = 'id';
 
     private $collectorServiceId;
     private $tagName;
@@ -72,7 +72,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         return $this;
     }
 
-    public function process(ContainerBuilder $container): void
+    public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->collectorServiceId)) {
             throw new InvalidConfigurationException('No such service: ' . $this->collectorServiceId);

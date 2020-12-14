@@ -11,5 +11,5 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 interface ConfiguratorInterface
 {
-    public function load(ContainerBuilder $container): void;
+    public function load(ContainerBuilder $container);
 }
