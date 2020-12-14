@@ -89,7 +89,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         }
     }
 
-    private function collectTags(array $tagsByServiceId): array
+    private function collectTags(array $tagsByServiceId)
     {
         $tags = [];
         foreach ($tagsByServiceId as $serviceId => $tagsInsideService) {
@@ -104,7 +104,7 @@ class AddTaggedCompilerPass implements CompilerPassInterface
         return $this->prioritizeTags($tags);
     }
 
-    private function prioritizeTags(array $tags): array
+    private function prioritizeTags(array $tags)
     {
         if ($this->priorityAttribute === null) {
             return $tags;
