@@ -14,5 +14,5 @@ interface CompilerPassProviderInterface
     /**
      * @return CompilerPassInterface[]
      */
-    public function getCompilerPasses(): array;
+    public function getCompilerPasses();
 }

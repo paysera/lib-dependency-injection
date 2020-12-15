@@ -63,7 +63,7 @@ class ConfiguratorLoader extends Loader
      *
      * @return bool
      */
-    public function supports($resource, $type = null): bool
+    public function supports($resource, $type = null)
     {
         return is_object($resource) && $resource instanceof ConfiguratorInterface;
     }

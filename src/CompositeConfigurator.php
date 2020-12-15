@@ -40,7 +40,7 @@ class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProvid
     /**
      * @return CompilerPassInterface[]
      */
-    public function getCompilerPasses(): array
+    public function getCompilerPasses()
     {
         $passes = [];
         foreach ($this->configurators as $configurator) {
