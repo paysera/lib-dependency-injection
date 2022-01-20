@@ -7,9 +7,6 @@ namespace Paysera\Component\DependencyInjection;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-/**
- * @internal
- */
 class CompositeConfigurator implements ConfiguratorInterface, CompilerPassProviderInterface
 {
     private $configurators;

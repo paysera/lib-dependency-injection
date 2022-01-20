@@ -6,9 +6,6 @@ namespace Paysera\Component\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-/**
- * @internal
- */
 class DefinitionsConfigurator implements ConfiguratorInterface
 {
     private $definitions;

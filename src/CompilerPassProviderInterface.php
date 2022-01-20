@@ -6,9 +6,6 @@ namespace Paysera\Component\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
-/**
- * @internal
- */
 interface CompilerPassProviderInterface
 {
     /**
