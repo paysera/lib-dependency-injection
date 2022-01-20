@@ -8,9 +8,6 @@ use InvalidArgumentException;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-/**
- * @internal
- */
 class ConfiguratorLoader extends Loader
 {
     private $container;
