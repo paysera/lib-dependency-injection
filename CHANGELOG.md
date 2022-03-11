@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Temporary removed `paysera/lib-php-cs-fixer-config` due to incompatibility with php 8.0
 - Temporary removed `friendsofphp/php-cs-fixer` due to `paysera/lib-php-cs-fixer-config` incompatibility
-- Temporary commented `cs-fixer` script from `.travis.yml`
+- Temporary removed `cs-fixer` script from `.travis.yml`
 
 ## [1.2.2] - 2022-01-20
 ### Removed
