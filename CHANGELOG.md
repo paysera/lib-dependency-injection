@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2022-03-11
 ### Added
 - Support for `"php": "^8.0"`
-- Support for `"phpunit/phpunit"": "^8.5"` and `"^9.5"`
+- Support for `"phpunit/phpunit"": "^8.0"` and `"^9.0"`
 ### Removed
 - Temporary removed `paysera/lib-php-cs-fixer-config` due to incompatibility with php 8.0
 - Temporary removed `friendsofphp/php-cs-fixer` due to `paysera/lib-php-cs-fixer-config` incompatibility
