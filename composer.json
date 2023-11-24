@@ -1,6 +1,5 @@
 {
     "name": "paysera/lib-dependency-injection",
-    "version": "1.3.1",
     "description": "Helper classes for Symfony Dependency Injection component",
     "keywords": ["compiler", "pass", "compilerpass", "DI", "DIC", "tag", "tags", "dependencyinjection", "priority", "services"],
     "type": "library",
