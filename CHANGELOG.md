@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 1.3.1
 ### Added
-- Support for `"symfony": "^6.3"`
+- Add support for Symfony 6.x
 
 ## 1.3.0
 ### Added
