@@ -11,7 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ConfiguratorLoader::load()` returns the container it loaded into and declares `: ContainerBuilder`, and
 `ConfiguratorLoader::supports()` declares `: bool`. Without these return types the class cannot be loaded on Symfony 7.
 Breaking for subclasses that override `load()` or `supports()` without a return type: declare `: ContainerBuilder` on
-`load()` and `: bool` on `supports()`.
+`load()` and return the container (for example `return parent::load($resource, $type);`), and declare `: bool` on
+`supports()`. 1.2.1 removed the same `supports(): bool` to avoid this break.
 - CI runs on GitHub Actions instead of Travis.
 
 ## 1.4.0

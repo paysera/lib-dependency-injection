@@ -59,8 +59,6 @@ class ConfiguratorLoader extends Loader
     /**
      * @param mixed $resource
      * @param string|null $type
-     *
-     * @return bool
      */
     public function supports($resource, $type = null): bool
     {

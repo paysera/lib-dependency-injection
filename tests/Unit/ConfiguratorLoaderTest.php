@@ -9,7 +9,9 @@ use Paysera\Component\DependencyInjection\CompilerPassProviderInterface;
 use Paysera\Component\DependencyInjection\CompositeConfigurator;
 use Paysera\Component\DependencyInjection\ConfiguratorInterface;
 use Paysera\Component\DependencyInjection\ConfiguratorLoader;
+use Paysera\Component\DependencyInjection\DefinitionsConfigurator;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use stdClass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -33,6 +35,26 @@ class ConfiguratorLoaderTest extends TestCase
         $this->assertInstanceOf(stdClass::class, $container->get('service.a'));
         $this->assertTrue($container->getParameter('pass.ran'));
         $this->assertSame(42, $container->getParameter('answer'));
+    }
+
+    public function testCreateContainerAcceptsAConfiguratorThatProvidesNoCompilerPasses()
+    {
+        $container = ConfiguratorLoader::createContainer($this->createConfigurator('service.a'));
+
+        $this->assertInstanceOf(FrozenParameterBag::class, $container->getParameterBag());
+        $this->assertInstanceOf(stdClass::class, $container->get('service.a'));
+    }
+
+    public function testLoadTracksTheConfiguratorAsAContainerResource()
+    {
+        $container = new ContainerBuilder();
+
+        (new ConfiguratorLoader($container))->load(new DefinitionsConfigurator([]));
+
+        $paths = array_map(function ($resource) {
+            return (string) $resource;
+        }, $container->getResources());
+        $this->assertContains(realpath((new ReflectionClass(DefinitionsConfigurator::class))->getFileName()), $paths);
     }
 
     public function testLoadLoadsTheConfiguratorIntoTheContainerAndReturnsTheContainer()
@@ -79,12 +101,12 @@ class ConfiguratorLoaderTest extends TestCase
         $this->assertSame($provider->getCompilerPasses(), $composite->getCompilerPasses());
     }
 
-    private function createConfigurator($serviceId)
+    private function createConfigurator(string $serviceId): ConfiguratorInterface
     {
         return new class($serviceId) implements ConfiguratorInterface {
             private $serviceId;
 
-            public function __construct($serviceId)
+            public function __construct(string $serviceId)
             {
                 $this->serviceId = $serviceId;
             }
@@ -96,12 +118,15 @@ class ConfiguratorLoaderTest extends TestCase
         };
     }
 
-    private function createPassProvider($parameterName)
+    /**
+     * @return ConfiguratorInterface&CompilerPassProviderInterface
+     */
+    private function createPassProvider(string $parameterName)
     {
         $pass = new class($parameterName) implements CompilerPassInterface {
             private $parameterName;
 
-            public function __construct($parameterName)
+            public function __construct(string $parameterName)
             {
                 $this->parameterName = $parameterName;
             }
