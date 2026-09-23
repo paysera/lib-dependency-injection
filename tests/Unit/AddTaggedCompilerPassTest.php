@@ -61,6 +61,15 @@ class AddTaggedCompilerPassTest extends TestCase
         }
     }
     
+    public function testProcessFailsWhenTheCollectorServiceIsMissing()
+    {
+        $compilerPass = new AddTaggedCompilerPass('collector', 'fruit', 'addFruit');
+
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('No such service: collector');
+        $compilerPass->process(new ContainerBuilder());
+    }
+
     public function provider()
     {
         return [
