@@ -51,9 +51,7 @@ class ConfiguratorLoaderTest extends TestCase
 
         (new ConfiguratorLoader($container))->load(new DefinitionsConfigurator([]));
 
-        $paths = array_map(function ($resource) {
-            return (string) $resource;
-        }, $container->getResources());
+        $paths = array_map('strval', $container->getResources());
         $this->assertContains(realpath((new ReflectionClass(DefinitionsConfigurator::class))->getFileName()), $paths);
     }
 
@@ -121,7 +119,7 @@ class ConfiguratorLoaderTest extends TestCase
     /**
      * @return ConfiguratorInterface&CompilerPassProviderInterface
      */
-    private function createPassProvider(string $parameterName)
+    private function createPassProvider(string $parameterName): ConfiguratorInterface
     {
         $pass = new class($parameterName) implements CompilerPassInterface {
             private $parameterName;
@@ -150,7 +148,7 @@ class ConfiguratorLoaderTest extends TestCase
                 $container->setDefinition('service.provider', new Definition(stdClass::class));
             }
 
-            public function getCompilerPasses()
+            public function getCompilerPasses(): array
             {
                 return [$this->pass];
             }
