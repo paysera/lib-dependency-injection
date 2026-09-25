@@ -30,7 +30,6 @@ class ConfiguratorLoaderTest extends TestCase
             ['answer' => 42]
         );
 
-        // compile() freezes the parameters on every Symfony line (isCompiled() only exists from 3.3)
         $this->assertInstanceOf(FrozenParameterBag::class, $container->getParameterBag());
         $this->assertInstanceOf(stdClass::class, $container->get('service.a'));
         $this->assertTrue($container->getParameter('pass.ran'));
