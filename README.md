@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-build]][link-build]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -198,13 +198,13 @@ composer fix-cs
 
 [ico-version]: https://img.shields.io/packagist/v/paysera/lib-dependency-injection.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/paysera/lib-dependency-injection/master.svg?style=flat-square
+[ico-build]: https://github.com/paysera/lib-dependency-injection/workflows/CI/badge.svg
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/paysera/lib-dependency-injection.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/paysera/lib-dependency-injection.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/paysera/lib-dependency-injection.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/paysera/lib-dependency-injection
-[link-travis]: https://travis-ci.org/paysera/lib-dependency-injection
+[link-build]: https://github.com/paysera/lib-dependency-injection/actions
 [link-scrutinizer]: https://scrutinizer-ci.com/g/paysera/lib-dependency-injection/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/paysera/lib-dependency-injection
 [link-downloads]: https://packagist.org/packages/paysera/lib-dependency-injection
