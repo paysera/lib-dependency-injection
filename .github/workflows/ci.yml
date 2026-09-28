@@ -36,9 +36,8 @@ jobs:
           - '6.*'
           - '7.*'
         dependency:
+          - 'lowest'
           - 'highest'
-        include:
-          - { php: '7.0', symfony: '2.*', dependency: 'lowest' }
         exclude:
           - { php: '7.0', symfony: '4.*' }
           - { php: '7.0', symfony: '5.*' }
