@@ -30,6 +30,7 @@ jobs:
           - '8.4'
           - '8.5'
         symfony:
+          - '2.*'
           - '3.*'
           - '4.*'
           - '5.*'
@@ -64,6 +65,10 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: flex
+
+      - name: Pin Symfony 2
+        if: matrix.symfony == '2.*'
+        run: composer require --no-update symfony/dependency-injection:^2.3 symfony/config:^2.3
 
       - name: Install dependencies
         uses: ramsey/composer-install@v2
