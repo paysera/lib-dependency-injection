@@ -14,6 +14,10 @@ class ConfiguratorLoader extends Loader
 
     public function __construct(ContainerBuilder $container)
     {
+        if (method_exists(Loader::class, '__construct')) {
+            parent::__construct();
+        }
+
         $this->container = $container;
     }
 

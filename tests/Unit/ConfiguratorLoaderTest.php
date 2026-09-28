@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Paysera\Component\DependencyInjection\Tests\Unit;
 
+use Closure;
 use InvalidArgumentException;
 use Paysera\Component\DependencyInjection\CompositeConfigurator;
 use Paysera\Component\DependencyInjection\ConfiguratorLoader;
@@ -13,6 +14,7 @@ use Paysera\Component\DependencyInjection\Tests\Unit\Mocks\MockServiceConfigurat
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use stdClass;
+use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
@@ -77,5 +79,18 @@ class ConfiguratorLoaderTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Resource must be configurator');
         $loader->load(new stdClass());
+    }
+
+    public function testConstructorInitializesTheLoaderEnvironment()
+    {
+        if (!property_exists(Loader::class, 'env')) {
+            $this->markTestSkipped('Loader has no $env before Symfony 5.3');
+        }
+
+        $loader = new ConfiguratorLoader(new ContainerBuilder());
+
+        $this->assertNull(Closure::bind(function () {
+            return $this->env;
+        }, $loader, Loader::class)());
     }
 }
