@@ -14,6 +14,10 @@ class ConfiguratorLoader extends Loader
 
     public function __construct(ContainerBuilder $container)
     {
+        if (method_exists(Loader::class, '__construct')) {
+            parent::__construct();
+        }
+
         $this->container = $container;
     }
 
@@ -44,7 +48,7 @@ class ConfiguratorLoader extends Loader
      *
      * @throws InvalidArgumentException
      */
-    public function load($resource, $type = null)
+    public function load($resource, $type = null): ContainerBuilder
     {
         if (!$resource instanceof ConfiguratorInterface) {
             throw new InvalidArgumentException('Resource must be configurator');
@@ -52,15 +56,15 @@ class ConfiguratorLoader extends Loader
 
         $this->container->addObjectResource($resource);
         $resource->load($this->container);
+
+        return $this->container;
     }
 
     /**
      * @param mixed $resource
      * @param string|null $type
-     *
-     * @return bool
      */
-    public function supports($resource, $type = null)
+    public function supports($resource, $type = null): bool
     {
         return is_object($resource) && $resource instanceof ConfiguratorInterface;
     }

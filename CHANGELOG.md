@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.5.0
+### Added
+- Support for Symfony 7.4: `symfony/dependency-injection` and `symfony/config` also allow `^7.4`.
+### Changed
+- `ConfiguratorLoader::load()` returns the container it loaded into and declares `: ContainerBuilder`, and
+`ConfiguratorLoader::supports()` declares `: bool`. Without these return types the class cannot be loaded on Symfony 7.
+**BREAKING**: on PHP 7.2 and later, a subclass that overrides `load()` or `supports()` with no return type, or with
+another one such as `: void` or `: mixed`, fails when it is loaded. Declare `: ContainerBuilder` on `load()` and return
+the container (for example `return parent::load($resource, $type);`), and declare `: bool` on `supports()`. 1.2.1
+removed the same `supports(): bool` to avoid this break; it ships in a minor now because Symfony 7 cannot load the
+class without it.
+- CI runs on GitHub Actions instead of Travis.
+
 ## 1.4.0
 ### Added
 - Add support for Symfony 6.x
